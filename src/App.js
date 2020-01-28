@@ -46,7 +46,7 @@ function App(props) {
 
           <Switch>
             {/* <Route path='/login' component={Login} /> */}
-            <Route path='/' exact component={Home} />
+            <Route path='/home' component={Home} />
             <Route path='/*' component={error} />
           </Switch>
         </div>

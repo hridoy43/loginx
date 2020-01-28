@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import { signIn, signOut } from '../actions/index'
 import fireb from '../config/fireb'
+import { withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -41,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Login(props) {
+function Login(props) {
     const classes = useStyles();
     const isLogged = useSelector(state => state.isLogged)
     const [formType, setFormType] = useState(null);
@@ -57,7 +58,7 @@ export default function Login(props) {
                         console.log('SignIn Completed!');
                         console.log(props);
                         dispatch(signIn());
-                        //this.props.history.push('/home');
+                        props.history.push('/home');
                     })
                     .catch(e => {
                         console.log(e.message);
@@ -161,3 +162,5 @@ export default function Login(props) {
         </Container>
     );
 }
+
+export default withRouter(Login)
