@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import fireb from './config/fireb'
@@ -8,7 +7,6 @@ import { signIn, signOut } from './actions'
 
 //components
 import Login from './components/Login'
-import SignUp from './components/SignUp'
 import Home from './components/Home'
 import PrimarySearchAppBar from './components/AppBar'
 import error from './components/404'
@@ -46,7 +44,8 @@ function App(props) {
 
           <Switch>
             {/* <Route path='/login' component={Login} /> */}
-            <Route path='/home' component={Home} />
+            <Route path='/' exact component={Home} />
+            <Route path='/(home|login)/' component={Home} />
             <Route path='/*' component={error} />
           </Switch>
         </div>

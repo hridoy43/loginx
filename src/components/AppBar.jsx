@@ -16,6 +16,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import fireb from '../config/fireb'
+import { withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -79,17 +80,20 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const handleLogOut = () => {
-    fireb.auth().signOut();
-}
 
-export default function PrimarySearchAppBar() {
+
+function PrimarySearchAppBar(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleLogOut = () => {
+        props.history.push('/login')
+        fireb.auth().signOut();
+    }
 
     const handleProfileMenuOpen = event => {
         setAnchorEl(event.currentTarget);
@@ -207,3 +211,5 @@ export default function PrimarySearchAppBar() {
         </div>
     );
 }
+
+export default withRouter(PrimarySearchAppBar);
